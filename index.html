@@ -10,6 +10,17 @@
   <body>
     <div id="content"></div>
     <script type="text/jsx">
+      var GameWindow = React.createClass({
+        render: function() {
+          return (
+            <div className="">Hi all</div>
+          );
+        }
+      });
+      React.render(
+        <GameWindow />,
+        document.getElementById('content')
+      );
     </script>
   </body>
   </html>
