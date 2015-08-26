@@ -11,9 +11,9 @@ var CookieButton = React.createClass({
     return (
       <div>
         <p>{this.state.cookies}</p>
-        <div className="cookie-button" onClick={this.handleClick}>
+        <button className="cookie-button" onClick={this.handleClick}>
           moar cookies
-        </div>
+        </button>
       </div>
       );
     }
