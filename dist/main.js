@@ -42,37 +42,11 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var CookieButton = React.createClass({
-	  displayName: 'CookieButton',
-
-	  handleClick: function handleClick() {
-	    this.setState({ cookies: this.state.cookies + 1 });
-	    StateStorage.saveState(this.state.cookies);
-	  },
-	  getInitialState: function getInitialState() {
-	    return { cookies: StateStorage.loadState() };
-	  },
-	  render: function render() {
-	    return React.createElement(
-	      'div',
-	      null,
-	      React.createElement(
-	        'p',
-	        null,
-	        this.state.cookies
-	      ),
-	      React.createElement(
-	        'button',
-	        { className: 'cookie-button', onClick: this.handleClick },
-	        'moar cookies'
-	      )
-	    );
-	  }
-	});
+	var CookieButton = __webpack_require__(1);
 
 	var StateStorage = {
 	  saveState: function saveState(cookies) {
@@ -96,6 +70,48 @@
 	});
 
 	React.render(React.createElement(GameWindow, null), document.getElementById('content'));
+
+/***/ },
+/* 1 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	module.exports = React.createClass({
+	  displayName: 'exports',
+
+	  saveState: function saveState(cookies) {
+	    localStorage.setItem('cookies', cookies);
+	  },
+
+	  loadState: function loadState() {
+	    return parseInt(localStorage.getItem('cookies') === null ? 0 : localStorage.getItem('cookies'));
+	  },
+
+	  handleClick: function handleClick() {
+	    this.setState({ cookies: this.state.cookies + 1 });
+	    this.saveState(this.state.cookies);
+	  },
+	  getInitialState: function getInitialState() {
+	    return { cookies: this.loadState() };
+	  },
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      null,
+	      React.createElement(
+	        'p',
+	        null,
+	        this.state.cookies
+	      ),
+	      React.createElement(
+	        'button',
+	        { className: 'cookie-button', onClick: this.handleClick },
+	        'moar cookies'
+	      )
+	    );
+	  }
+	});
 
 /***/ }
 /******/ ]);
