@@ -44,74 +44,60 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	/** @jsx React.DOM */var CookieButton = __webpack_require__(1);
 
-	var CookieButton = __webpack_require__(1);
 
-	var StateStorage = {
-	  saveState: function saveState(cookies) {
-	    localStorage.setItem('cookies', cookies);
-	  },
-	  loadState: function loadState() {
-	    return parseInt(localStorage.getItem('cookies') === null ? 0 : localStorage.getItem('cookies'));
-	  }
-	};
-
-	var GameWindow = React.createClass({
-	  displayName: 'GameWindow',
-
-	  render: function render() {
-	    return React.createElement(
-	      'div',
-	      null,
-	      React.createElement(CookieButton, null)
+	var GameWindow = React.createClass({displayName: "GameWindow",
+	  render: function() {
+	    return (
+	      React.createElement("div", null, 
+	        React.createElement(CookieButton, null)
+	      )
 	    );
 	  }
 	});
 
-	React.render(React.createElement(GameWindow, null), document.getElementById('content'));
+	React.render(
+	  React.createElement(GameWindow, null),
+	  document.getElementById('content')
+	);
+
 
 /***/ },
 /* 1 */
 /***/ function(module, exports) {
 
-	'use strict';
+	/** @jsx React.DOM */module.exports  = React.createClass({displayName: "module.exports",
 
-	module.exports = React.createClass({
-	  displayName: 'exports',
 
-	  saveState: function saveState(cookies) {
-	    localStorage.setItem('cookies', cookies);
-	  },
+	   saveState: function(cookies) {
+	     localStorage.setItem('cookies', cookies)
+	    },
+	    
+	    loadState: function() {
+	        return parseInt(localStorage.getItem('cookies') === null ? 0 : localStorage.getItem('cookies'))
+	    },
+	    
 
-	  loadState: function loadState() {
-	    return parseInt(localStorage.getItem('cookies') === null ? 0 : localStorage.getItem('cookies'));
-	  },
-
-	  handleClick: function handleClick() {
-	    this.setState({ cookies: this.state.cookies + 1 });
+	  handleClick: function() {
+	    this.setState({cookies: this.state.cookies + 1});
 	    this.saveState(this.state.cookies);
 	  },
-	  getInitialState: function getInitialState() {
-	    return { cookies: this.loadState() };
+	  getInitialState: function() {
+	    return {cookies: this.loadState()};
 	  },
-	  render: function render() {
-	    return React.createElement(
-	      'div',
-	      null,
-	      React.createElement(
-	        'p',
-	        null,
-	        this.state.cookies
-	      ),
-	      React.createElement(
-	        'button',
-	        { className: 'cookie-button', onClick: this.handleClick },
-	        'moar cookies'
+	  render: function() {
+	    return (
+	      React.createElement("div", null, 
+	        React.createElement("p", null, this.state.cookies), 
+	        React.createElement("button", {className: "cookie-button", onClick: this.handleClick}, 
+	          "moar cookies"
+	        )
 	      )
-	    );
-	  }
+	      );
+	    }
 	});
+
 
 /***/ }
 /******/ ]);
