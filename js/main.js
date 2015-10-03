@@ -2,19 +2,12 @@ var React = require('react');
 
 var CookieButton = require('./cookie-button.js');
 var Items = require('./items.js');
+var SessionManager = require('./session-manager.js');
 
 var Game = React.createClass({
 
-    saveSession: function(cookies) {
-        localStorage.setItem('session', JSON.stringify(this.state));
-    },
-    
-    loadSession: function() {
-        return JSON.parse(localStorage.getItem('session'));
-    },
-
     getInitialState: function() {
-        var previous_session = this.loadSession();
+        var previous_session = SessionManager.loadSession();
         if (previous_session == null) {
             return {
                 cookie_counter: 0,
@@ -33,7 +26,7 @@ var Game = React.createClass({
     handleCookieClick: function() {
         this.setState(
             {cookie_counter: this.state.cookie_counter + 1},
-            this.saveSession()
+            SessionManager.saveSession(this.state)
         );
     },
 
