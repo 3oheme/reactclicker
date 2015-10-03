@@ -1,5 +1,6 @@
-module.exports  = React.createClass({
+var React = require('react');
 
+module.exports = React.createClass({
 
    saveState: function(cookies) {
      localStorage.setItem('cookies', cookies)

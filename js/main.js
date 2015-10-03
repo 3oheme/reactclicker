@@ -1,3 +1,5 @@
+var React = require('react');
+
 var CookieButton = require('./cookie-button.js');
 
 var GameWindow = React.createClass({
