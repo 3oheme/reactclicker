@@ -30,14 +30,18 @@ var Game = React.createClass({
     },
 
     handleItemClick: function(item) {
-        if (item == 'cursor') {
+        if (item == 'cursor' && this.state.cookie_counter >= this.state.cursor_price) {
             this.setState({
-                cursor_counter: this.state.cursor_counter + 1,                    
+                cookie_counter: this.state.cookie_counter - this.state.cursor_price,
+                cursor_counter: this.state.cursor_counter + 1,
+                cursor_price: parseInt(this.state.cursor_price * (Math.random() + 1))
             });
         }
-        else if (item == 'granma') {
+        else if (item == 'granma' && this.state.cookie_counter >= this.state.granma_price) {
             this.setState({
-                granma_counter: this.state.granma_counter + 1,                    
+                cookie_counter: this.state.cookie_counter - this.state.granma_price,
+                granma_counter: this.state.granma_counter + 1,
+                granma_price: parseInt(this.state.granma_price * (Math.random() + 1))
             });
         }
     },
