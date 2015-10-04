@@ -9,18 +9,25 @@ var Game = React.createClass({
     getInitialState: function() {
         var previous_session = SessionManager.loadSession();
         if (previous_session == null) {
-            return {
-                cookie_counter: 0,
-                cursor_counter: 0,
-                cursor_price: 10,
-                granma_counter: 0,
-                granma_price: 100
-            }
+            this.defaultGameValues
         }
         else {
             return previous_session;
         }
+    },
 
+    defaultGameValues: function() {
+        return {
+            cookie_counter: 0,
+            cursor_counter: 0,
+            cursor_price: 10,
+            granma_counter: 0,
+            granma_price: 100
+        }
+    },
+
+    handleResetClick: function() {
+        this.setState(this.defaultGameValues);
     },
 
     handleCookieClick: function() {
@@ -62,6 +69,8 @@ var Game = React.createClass({
                     granma_counter={this.state.granma_counter}
                     granma_price= {this.state.granma_price}
                     handleClick={this.handleItemClick} />
+                <br />
+                <button onClick={this.handleResetClick}>Reset game</button>
             </div>
         );
     }
