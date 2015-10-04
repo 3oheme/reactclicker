@@ -21,9 +21,20 @@ var Game = React.createClass({
             cookie_counter: 0,
             cursor_counter: 0,
             cursor_price: 10,
+            cursor_cps: 1,
             granma_counter: 0,
-            granma_price: 100
+            granma_price: 100,
+            granma_cps: 5,
+            fps: 100,
         }
+    },
+
+    updateValues: function() {
+        this.setState({
+            cookie_counter: this.state.cookie_counter +
+                (this.state.cursor_cps * this.state.cursor_counter * (this.state.fps/1000)) +
+                (this.state.granma_cps * this.state.granma_counter * (this.state.fps/1000))
+        });
     },
 
     handleResetClick: function() {
@@ -57,12 +68,17 @@ var Game = React.createClass({
         SessionManager.saveSession(this.state);
     },
 
+    componentDidMount: function() {
+        setInterval(this.updateValues, this.state.fps);
+    },
+
     render: function() {
         return (
             <div>
                 <CookieButton
-                    cookies={this.state.cookie_counter}
+                    cookies={parseInt(this.state.cookie_counter)}
                     handleClick={this.handleCookieClick} />
+                <br />
                 <Items
                     cursor_counter={this.state.cursor_counter}
                     cursor_price= {this.state.cursor_price}
