@@ -12,7 +12,9 @@ var Game = React.createClass({
             return {
                 cookie_counter: 0,
                 cursor_counter: 0,
-                cursor_price: 10
+                cursor_price: 10,
+                granma_counter: 0,
+                granma_price: 100
             }
         }
         else {
@@ -33,6 +35,11 @@ var Game = React.createClass({
                 cursor_counter: this.state.cursor_counter + 1,                    
             });
         }
+        else if (item == 'granma') {
+            this.setState({
+                granma_counter: this.state.granma_counter + 1,                    
+            });
+        }
     },
 
     componentDidUpdate: function() {
@@ -48,6 +55,8 @@ var Game = React.createClass({
                 <Items
                     cursor_counter={this.state.cursor_counter}
                     cursor_price= {this.state.cursor_price}
+                    granma_counter={this.state.granma_counter}
+                    granma_price= {this.state.granma_price}
                     handleClick={this.handleItemClick} />
             </div>
         );
