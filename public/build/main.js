@@ -33,16 +33,6 @@ var React = require("react");
 module.exports = React.createClass({
     displayName: "exports",
 
-    getInitialState: function getInitialState() {
-        return {
-            cursor_counter: 0,
-            cursor_price: 10 };
-    },
-
-    handleBuyClick: function handleBuyClick() {
-        this.setState({ cursor_counter: this.state.cursor_counter + 1 });
-    },
-
     render: function render() {
         return React.createElement(
             "div",
@@ -51,16 +41,16 @@ module.exports = React.createClass({
                 "div",
                 { className: "items--cursor" },
                 "Number of cursors: ",
-                this.state.cursor_counter,
+                this.props.cursor_counter,
                 " ",
                 React.createElement("br", null),
                 "price: ",
-                this.state.cursor_price,
+                this.props.cursor_price,
                 " ",
                 React.createElement("br", null),
                 React.createElement(
-                    "a",
-                    { onClick: this.handleBuyClick },
+                    "button",
+                    { onClick: this.props.handleClick.bind(null, "cursor") },
                     "Buy"
                 )
             )
@@ -85,10 +75,8 @@ var Game = React.createClass({
         if (previous_session == null) {
             return {
                 cookie_counter: 0,
-                cursor: {
-                    cursor_counter: 0,
-                    cursor_price: 10
-                }
+                cursor_counter: 0,
+                cursor_price: 10
             };
         } else {
             return previous_session;
@@ -96,7 +84,20 @@ var Game = React.createClass({
     },
 
     handleCookieClick: function handleCookieClick() {
-        this.setState({ cookie_counter: this.state.cookie_counter + 1 }, SessionManager.saveSession(this.state));
+        this.setState({
+            cookie_counter: this.state.cookie_counter + 1
+        });
+    },
+
+    handleItemClick: function handleItemClick(item) {
+        if (item == "cursor") {
+            this.setState({
+                cursor_counter: this.state.cursor_counter + 1 });
+        }
+    },
+
+    componentDidUpdate: function componentDidUpdate() {
+        SessionManager.saveSession(this.state);
     },
 
     render: function render() {
@@ -106,7 +107,10 @@ var Game = React.createClass({
             React.createElement(CookieButton, {
                 cookies: this.state.cookie_counter,
                 handleClick: this.handleCookieClick }),
-            React.createElement(Items, null)
+            React.createElement(Items, {
+                cursor_counter: this.state.cursor_counter,
+                cursor_price: this.state.cursor_price,
+                handleClick: this.handleItemClick })
         );
     }
 });

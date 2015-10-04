@@ -11,10 +11,8 @@ var Game = React.createClass({
         if (previous_session == null) {
             return {
                 cookie_counter: 0,
-                cursor: {
-                    cursor_counter: 0,
-                    cursor_price: 10
-                }
+                cursor_counter: 0,
+                cursor_price: 10
             }
         }
         else {
@@ -24,10 +22,21 @@ var Game = React.createClass({
     },
 
     handleCookieClick: function() {
-        this.setState(
-            {cookie_counter: this.state.cookie_counter + 1},
-            SessionManager.saveSession(this.state)
-        );
+        this.setState({
+            cookie_counter: this.state.cookie_counter + 1
+        });
+    },
+
+    handleItemClick: function(item) {
+        if (item == 'cursor') {
+            this.setState({
+                cursor_counter: this.state.cursor_counter + 1,                    
+            });
+        }
+    },
+
+    componentDidUpdate: function() {
+        SessionManager.saveSession(this.state);
     },
 
     render: function() {
@@ -36,7 +45,10 @@ var Game = React.createClass({
                 <CookieButton
                     cookies={this.state.cookie_counter}
                     handleClick={this.handleCookieClick} />
-                <Items />
+                <Items
+                    cursor_counter={this.state.cursor_counter}
+                    cursor_price= {this.state.cursor_price}
+                    handleClick={this.handleItemClick} />
             </div>
         );
     }
