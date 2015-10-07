@@ -17,6 +17,7 @@ A cookie clicker clone based in ReactJS, as a sort-of motivation to learn ReactJ
 
 `npm run watch` to generate assets but also watch for file changes
 
+Remember that you can also start a very simple HTTP server with `python -m SimpleHTTPServer`
 
 ## TODO List
 

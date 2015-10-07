@@ -87,7 +87,7 @@ var Game = React.createClass({
     getInitialState: function getInitialState() {
         var previous_session = SessionManager.loadSession();
         if (previous_session == null) {
-            this.defaultGameValues;
+            return this.defaultGameValues();
         } else {
             return previous_session;
         }
