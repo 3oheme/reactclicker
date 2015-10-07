@@ -20,15 +20,15 @@ A cookie clicker clone based in ReactJS, as a sort-of motivation to learn ReactJ
 
 ## TODO List
 
-- [] Set up jenkins as a build pipeline to run tests
-  - [] Add testing infrastructure
-- [] Styling:
-  - [] Basic styling
-- [] Add Flow as design pattern for component communication
+- [ ] Set up jenkins as a build pipeline to run tests
+  - [ ] Add testing infrastructure
+- [ ] Styling:
+  - [ ] Basic styling
+- [ ] Add Flow as design pattern for component communication
 - [x] Configure NPM to build assets (JSX and SASS)
-- [] Game logic
-  - [] Add silly messages 😅
-  - [] Refactor power ups management 
+- [ ] Game logic
+  - [ ] Add silly messages 😅
+  - [ ] Refactor power ups management 
 
 ## Thanks to the following posts and authors for their help
 
