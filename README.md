@@ -1,17 +1,34 @@
 # reactclicker
-A cookie clicker clone based in ReactJS, as a sort-of motivation to learn ReactJS.
+
+A cookie clicker clone based in ReactJS, as a sort-of motivation to learn ReactJS. Build with:
+
+* npm
+* ReactJS
+* SASS
+* Github Pages
 
 [Demo](http://palomoduarte.com/reactclicker/)
 
-## Component structure
+## How to use it
 
-GameWindow
+`npm install` to install all the dependencies
 
-* CookieButton
-* PowerUpStore
- * Grandmas
- * Farm
-* Messages
+`npm run build` to generate all the assets in public/build folder
+
+`npm run watch` to generate assets but also watch for file changes
+
+
+## TODO List
+
+- [] Set up jenkins as a build pipeline to run tests
+  - [] Add testing infrastructure
+- [] Styling:
+  - [] Basic styling
+- [] Add Flow as design pattern for component communication
+- [x] Configure NPM to build assets (JSX and SASS)
+- [] Game logic
+  - [] Add silly messages 😅
+  - [] Refactor power ups management 
 
 ## Thanks to the following posts and authors for their help
 
